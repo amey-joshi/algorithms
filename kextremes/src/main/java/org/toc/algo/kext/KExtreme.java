@@ -6,8 +6,11 @@ public class KExtreme {
     private int k;
 
     public KExtreme(int k) {
-        if (k < 1)
-            throw new IllegalArgumentException(String.format("Illegal to set k = %d", k));
+        if (k < 1) {
+            final String message = String.format("Illegal to set k = %d", k);
+            throw new IllegalArgumentException(message);
+        }
+        
         this.k = k;
     }
 
