@@ -45,11 +45,7 @@ public class KExtreme {
         return priorityQueue.stream().mapToInt(n -> c * n.intValue()).toArray();
     }
 
-    private boolean checkCurrentExtreme(boolean flipSign, int n, int currentExtreme) {
-        if (flipSign) {
-            return -n < -currentExtreme;
-        } else {
-            return n > currentExtreme;
-        }
+    private boolean checkCurrentExtreme(boolean flipSign, int n, int currentExtreme) {               
+        return flipSign ? (-n < -currentExtreme) : (n > currentExtreme);
     }
 }
