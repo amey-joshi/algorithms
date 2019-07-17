@@ -3,15 +3,17 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.toc.algo</groupId>
-  <artifactId>kmin</artifactId>
+  <artifactId>k-extremes</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>kmin</name>
+  <name>k-extremes</name>
   <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
   </properties>
 
   <dependencies>
