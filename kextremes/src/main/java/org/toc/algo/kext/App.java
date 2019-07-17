@@ -11,26 +11,26 @@ import java.util.stream.Collectors;
  *
  */
 public class App {
-	private static Logger logger = Logger.getLogger(App.class.getName());
+    private static Logger logger = Logger.getLogger(App.class.getName());
 
-	public static void main(String[] args) {
-		configureLogger();
-		KExtreme kmin = new KExtreme(5);
-		int[] elements = { 16, 21, 43, 40, 15, 6, 75, 81, 9, 10 };
-		show(kmin.getLeastElements(elements));
-		show(kmin.getMostElements(elements));
-	}
+    public static void main(String[] args) {
+        configureLogger();
+        KExtreme kmin = new KExtreme(5);
+        int[] elements = { 16, 21, 43, 40, 15, 6, 75, 81, 9, 10 };
+        show(kmin.getLeastElements(elements));
+        show(kmin.getMostElements(elements));
+    }
 
-	private static void show(int[] extremes) {
-		String s = Arrays.stream(extremes).mapToObj(String::valueOf).collect(Collectors.joining(","));
-		
-		logger.fine(s);
-	}
-	
-	private static void configureLogger() {
-		logger.setLevel(Level.ALL);
-		ConsoleHandler consoleHandler = new ConsoleHandler();
-		consoleHandler.setLevel(Level.ALL);
-		logger.addHandler(consoleHandler);
-	}
+    private static void show(int[] extremes) {
+        String s = Arrays.stream(extremes).mapToObj(String::valueOf).collect(Collectors.joining(","));
+
+        logger.fine(s);
+    }
+
+    private static void configureLogger() {
+        logger.setLevel(Level.ALL);
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.ALL);
+        logger.addHandler(consoleHandler);
+    }
 }
