@@ -20,6 +20,8 @@ package org.toc.algo.numbers;
 
 import java.io.Console;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * A class that reads an integer and converts in into words. For example, the
@@ -224,12 +226,13 @@ public class IntToWord {
 
             int[] digits = filterPrefixedZeros(number.chars().map(c -> c - '0').toArray());
 
-            String word = "";
+            String word;
             int i = 0;
 
             if (digits.length == 0) {
                 word = "zero";
             } else {
+                LinkedList<String> wordList = new LinkedList<>();
                 for (int j = digits.length; j > 0; j -= 3) {
                     int high = j;
                     int low = j - 1;
@@ -242,8 +245,10 @@ public class IntToWord {
                         low = j - 1;
                     }
 
-                    word = tripleToWords(Arrays.copyOfRange(digits, low, high), suffix[i++]) + " " + word;
+                    wordList.addFirst(tripleToWords(Arrays.copyOfRange(digits, low, high), suffix[i++]));
                 }
+                
+                word = String.join(" ", wordList);
             }
 
             result = minus ? "minus " + word.trim() : word.trim();
