@@ -1,7 +1,7 @@
+*.class
 /.metadata/
 /.sonarlint/
-kextremes/.classpath
-kextremes/.gitignore
-kextremes/.project
-kextremes/.settings/
-
+*/.classpath
+*/.gitignore
+*/.project
+*/.settings/
