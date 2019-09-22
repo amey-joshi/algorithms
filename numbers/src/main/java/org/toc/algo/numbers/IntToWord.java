@@ -21,7 +21,6 @@ package org.toc.algo.numbers;
 import java.io.Console;
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * A class that reads an integer and converts in into words. For example, the
