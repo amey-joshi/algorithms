@@ -1,6 +1,18 @@
 import java.util.Arrays;
 import java.io.Console;
 
+/**
+ * A class to express an integer in English words.
+ *
+ * @author Amey Joshi
+ *
+ */
+// @To Do Handle numbers starting with zeros.
+// @To Do Handle zero, all zeros.
+// @To Do Handle negative integers.
+// @To Do Handle decimals.
+// @To Do Handle errors like illegal characters.
+// @To Do Handle scientific notation.
 public class NumberToWords {
     private String onesDigit(int n) {
         String word = "";
