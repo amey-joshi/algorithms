@@ -19,39 +19,39 @@
 package org.toc.algo.numbers;
 
 public class Utils {
-	/**
-	 * Returns true if a string is a non-negative integer, false otherwise.
-	 * 
-	 * @param number
-	 * @return
-	 */
-	public static boolean isNonnegativeInt(String number) {
-		boolean result = true;
+    /**
+     * Returns true if a string is a non-negative integer, false otherwise.
+     * 
+     * @param number
+     * @return
+     */
+    public static boolean isNonnegativeInt(String number) {
+        boolean result = true;
 
-		for (int i = 0; i < number.length(); ++i) {
-			if (!Character.isDigit(number.charAt(i))) {
-				result = false;
-				break;
-			}
-		}
-		return result;
-	}
+        for (int i = 0; i < number.length(); ++i) {
+            if (!Character.isDigit(number.charAt(i))) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
 
-	/**
-	 * Returns true if a string is an integer, false otherwise.
-	 * 
-	 * @param number
-	 * @return
-	 */
-	public static boolean isInteger(String number) {
-		boolean result = false;
+    /**
+     * Returns true if a string is an integer, false otherwise.
+     * 
+     * @param number
+     * @return
+     */
+    public static boolean isInteger(String number) {
+        boolean result = false;
 
-		char first = number.charAt(0);
+        char first = number.charAt(0);
 
-		if (first == '+' || first == '-' || Character.isDigit(first)) {
-			result = isNonnegativeInt(number.substring(1));
-		}
+        if (first == '+' || first == '-' || Character.isDigit(first)) {
+            result = isNonnegativeInt(number.substring(1));
+        }
 
-		return result;
-	}
+        return result;
+    }
 }
