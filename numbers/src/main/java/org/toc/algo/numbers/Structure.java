@@ -67,6 +67,33 @@ public class Structure {
 	}
 
 	/**
+	 * Returns a list of all prime factors of a positive integer.
+	 * 
+	 * @param n
+	 * @return
+	 */
+	public static List<Integer> allPrimeFactors(int n) {
+		List<Integer> factors = new ArrayList<>();
+
+		if (n > 0) {
+			int p = 2;
+
+			while (n >= p * p) {
+				if (n % p == 0) {
+					factors.add(p);
+					n /= p;
+				} else {
+					p++;
+				}
+			}
+
+			factors.add(n);
+		}
+
+		return factors;
+	}
+
+	/**
 	 * Return a list of all factors of a positive integer. Note that these are not
 	 * just the prime factors.
 	 * 
@@ -151,6 +178,8 @@ public class Structure {
 		} else {
 			System.out.println(String.format("%d is not a perfect number.", n));
 		}
+
+		System.out.println("Prime factors:" + Arrays.toString(allPrimeFactors(n).toArray()));
 	}
 
 	public static void main(String[] args) {

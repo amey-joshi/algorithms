@@ -19,6 +19,12 @@
 package org.toc.algo.numbers;
 
 public class Utils {
+	/**
+	 * Returns true if a string is a non-negative integer, false otherwise.
+	 * 
+	 * @param number
+	 * @return
+	 */
 	public static boolean isNonnegativeInt(String number) {
 		boolean result = true;
 
@@ -31,6 +37,12 @@ public class Utils {
 		return result;
 	}
 
+	/**
+	 * Returns true if a string is an integer, false otherwise.
+	 * 
+	 * @param number
+	 * @return
+	 */
 	public static boolean isInteger(String number) {
 		boolean result = false;
 
