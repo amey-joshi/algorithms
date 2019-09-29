@@ -36,7 +36,7 @@ public class Structure {
 
         if (number.length() % 2 == 1) {
             char[] digits = number.toCharArray();
-            int i = 0;
+            int i;
             int j = number.length() - 1;
             for (i = 0; i < number.length() / 2; i++) {
                 if (digits[i] != digits[j--]) {
@@ -183,7 +183,7 @@ public class Structure {
     }
 
     public static void main(String[] args) {
-        boolean stop = false;
+        boolean stop;
         Console console = System.console();
 
         do {
