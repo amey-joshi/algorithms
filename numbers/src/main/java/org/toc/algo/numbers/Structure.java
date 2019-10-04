@@ -22,29 +22,23 @@ import java.io.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Structure {
+
     /**
      * Returns true if a positive integer is a palindrome, false otherwise.
-     * 
+     *
      * @param number
-     * 
+     *
      * @return true or false.
      */
     public static boolean isPalindrome(String number) {
         boolean result = false;
+        final int L = number.length();
 
-        if (number.length() % 2 == 1) {
-            char[] digits = number.toCharArray();
-            int i;
-            int j = number.length() - 1;
-            for (i = 0; i < number.length() / 2; i++) {
-                if (digits[i] != digits[j--]) {
-                    break;
-                }
-            }
-
-            result = (i == number.length() / 2);
+        if (L % 2 == 1) {
+            result = IntStream.range(0, L / 2).noneMatch(n -> number.charAt(n) != number.charAt(L - 1 - n));
         }
 
         return result;
@@ -52,7 +46,7 @@ public class Structure {
 
     /**
      * Sum of digits is a positive integer.
-     * 
+     *
      * @param number
      * @return
      */
@@ -68,7 +62,7 @@ public class Structure {
 
     /**
      * Returns a list of all prime factors of a positive integer.
-     * 
+     *
      * @param n
      * @return
      */
@@ -94,11 +88,11 @@ public class Structure {
     }
 
     /**
-     * Return a list of all factors of a positive integer. Note that these are not
-     * just the prime factors.
-     * 
+     * Return a list of all factors of a positive integer. Note that these are
+     * not just the prime factors.
+     *
      * @param n
-     * 
+     *
      * @return {@link List} of all factors.
      */
     public static List<Integer> allFactors(int n) {
@@ -109,11 +103,7 @@ public class Structure {
 
             int limit = n / 2;
 
-            for (int i = 2; i <= limit; ++i) {
-                if (n % i == 0) {
-                    factors.add(i);
-                }
-            }
+            IntStream.range(2, limit + 1).filter(i -> n % i == 0).forEach(i -> factors.add(i));
 
             if (n > 1) {
                 factors.add(n); // Every integer is a factor of itself.
@@ -123,10 +113,14 @@ public class Structure {
         return factors;
     }
 
+    private static void add(int i, List<Integer> factors) {
+        factors.add(i);
+    }
+
     /**
      * Sum of factors of a positive integer. If the argument is not positive the
      * method returns 0.
-     * 
+     *
      * @param n
      * @return
      */
@@ -142,7 +136,7 @@ public class Structure {
 
     /**
      * Checks whether a positive integer is a perfect number.
-     * 
+     *
      * @param n
      * @return
      */
