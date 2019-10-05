@@ -51,7 +51,7 @@ public class Structure {
      * @return
      */
     public static int sumOfDigits(String number) {
-        if (Utils.isNonnegativeInt(number)) {
+        if (!Utils.isNonnegativeInt(number)) {
             String msg = String.format("Could not interpret %s as a non-negative integer.", number);
             throw new IllegalArgumentException(msg);
         }
