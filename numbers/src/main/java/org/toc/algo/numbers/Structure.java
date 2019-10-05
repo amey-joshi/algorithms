@@ -36,12 +36,13 @@ public class Structure {
      *
      * @return true or false.
      */
-    public static boolean isPalindrome(String number) {
+    public static boolean isPalindrome(long number) {
+        String s = String.valueOf(number);
         boolean result = false;
-        final int L = number.length();
+        final int L = s.length();
 
         if (L % 2 == 1) {
-            result = IntStream.range(0, L / 2).noneMatch(n -> number.charAt(n) != number.charAt(L - 1 - n));
+            result = IntStream.range(0, L / 2).noneMatch(n -> s.charAt(n) != s.charAt(L - 1 - n));
         }
 
         return result;
@@ -53,13 +54,13 @@ public class Structure {
      * @param number
      * @return
      */
-    public static long sumOfDigits(String number) {
-        if (!Utils.isNonnegativeLong(number)) {
-            String msg = String.format("Could not interpret %s as a non-negative (long) integer.", number);
+    public static long sumOfDigits(long number) {
+        if (number < 0) {
+            String msg = String.format("Expecting a positive number as an argument instead of %d.", number);
             throw new IllegalArgumentException(msg);
         }
 
-        return number.chars().map(c -> c - '0').asLongStream().sum();
+        return String.valueOf(number).chars().map(c -> c - '0').asLongStream().sum();
     }
 
     /**
@@ -149,7 +150,7 @@ public class Structure {
         return sumOfFactors(n) == n;
     }
 
-    private static void allTests(String number) {
+    private static void allTests(long number) {
         if (isPalindrome(number)) {
             System.out.println("\nYou entered a palindrome.");
         } else {
@@ -158,21 +159,20 @@ public class Structure {
 
         System.out.println("Sum of the digits is " + sumOfDigits(number));
 
-        long n = Long.parseLong(number);
-        List<Long> factors = allFactors(n);
+        List<Long> factors = allFactors(number);
 
         System.out.println("Its factors are: " + Arrays.toString(factors.toArray()));
         System.out.println("Number of divisors: " + (factors.size() - 1));
 
-        System.out.println("Sum of its factors: " + sumOfFactors(n));
+        System.out.println("Sum of its factors: " + sumOfFactors(number));
 
-        if (isPerfect(n)) {
-            System.out.println(String.format("%d is a perfect number.", n));
+        if (isPerfect(number)) {
+            System.out.println(String.format("%d is a perfect number.", number));
         } else {
-            System.out.println(String.format("%d is not a perfect number.", n));
+            System.out.println(String.format("%d is not a perfect number.", number));
         }
 
-        System.out.println("Prime factors:" + Arrays.toString(allPrimeFactors(n).toArray()));
+        System.out.println("Prime factors:" + Arrays.toString(allPrimeFactors(number).toArray()));
     }
 
     public static void main(String[] args) {
@@ -181,11 +181,10 @@ public class Structure {
 
         do {
             String number = console.readLine("Enter a positive integer: ");
-
-            if (Utils.isNonnegativeLong(number)) {
-                allTests(number);
-            } else {
-                System.out.println("You didn't enter a positive integer");
+            try {
+                allTests(Long.parseUnsignedLong(number));
+            } catch (IllegalArgumentException e) {
+                System.out.println("You didn't enter a positive number");
             }
 
             String choice = console.readLine("Do you want to stop? [y|n]?");
