@@ -18,38 +18,46 @@
  */
 package org.toc.algo.numbers;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Utils {
+
+    private static final Logger LOGGER = Logger.getLogger(Utils.class.getName());
+
     /**
      * Returns true if a string is a non-negative integer, false otherwise.
-     * 
+     *
      * @param number
      * @return
      */
     public static boolean isNonnegativeInt(String number) {
         boolean result = true;
 
-        for (int i = 0; i < number.length(); ++i) {
-            if (!Character.isDigit(number.charAt(i))) {
-                result = false;
-                break;
-            }
+        try {
+            Integer.parseUnsignedInt(number);
+        } catch (NumberFormatException e) {
+            LOGGER.log(Level.FINE, String.format("The string %s could not be interepreted as a non-negative integer", number));
+            result = false;
         }
+
         return result;
     }
 
     /**
      * Returns true if a string is an integer, false otherwise.
-     * 
+     *
      * @param number
      * @return
      */
     public static boolean isInteger(String number) {
-        boolean result = false;
+        boolean result = true;
 
-        char first = number.charAt(0);
-
-        if (first == '+' || first == '-' || Character.isDigit(first)) {
-            result = isNonnegativeInt(number.substring(1));
+        try {
+            Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            LOGGER.log(Level.FINE, String.format("The string %s could not be interepreted as an integer", number));
+            result = false;
         }
 
         return result;

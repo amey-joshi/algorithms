@@ -51,13 +51,12 @@ public class Structure {
      * @return
      */
     public static int sumOfDigits(String number) {
-        int sum = 0;
-
         if (Utils.isNonnegativeInt(number)) {
-            sum = number.chars().map(c -> c - '0').reduce(0, Integer::sum);
+            String msg = String.format("Could not interpret %s as a non-negative integer.", number);
+            throw new IllegalArgumentException(msg);
         }
 
-        return sum;
+        return number.chars().map(c -> c - '0').reduce(0, Integer::sum);
     }
 
     /**
@@ -67,22 +66,25 @@ public class Structure {
      * @return
      */
     public static List<Integer> allPrimeFactors(int n) {
+        if (n <= 0) {
+            String msg = String.format("Cannot find factors of a non-positive integer %d.", n);
+            throw new IllegalArgumentException(msg);
+        }
+
         List<Integer> factors = new ArrayList<>();
 
-        if (n > 0) {
-            int p = 2;
+        int p = 2;
 
-            while (n >= p * p) {
-                if (n % p == 0) {
-                    factors.add(p);
-                    n /= p;
-                } else {
-                    p++;
-                }
+        while (n >= p * p) {
+            if (n % p == 0) {
+                factors.add(p);
+                n /= p;
+            } else {
+                p++;
             }
-
-            factors.add(n);
         }
+
+        factors.add(n);
 
         return factors;
     }
@@ -96,25 +98,20 @@ public class Structure {
      * @return {@link List} of all factors.
      */
     public static List<Integer> allFactors(int n) {
+        if (n <= 0) {
+            String msg = String.format("Cannot find factors of a non-positive integer %d.", n);
+            throw new IllegalArgumentException(msg);
+        }
+
         List<Integer> factors = new ArrayList<>();
 
-        if (n > 0) {
-            factors.add(1); // One is a factor of every integer.
-
-            int limit = n / 2;
-
-            IntStream.range(2, limit + 1).filter(i -> n % i == 0).forEach(i -> factors.add(i));
-
-            if (n > 1) {
-                factors.add(n); // Every integer is a factor of itself.
-            }
+        factors.add(1); // One is a factor of every integer.
+        IntStream.range(2, n / 2 + 1).filter(i -> n % i == 0).forEach(i -> factors.add(i));
+        if (n > 1) {
+            factors.add(n); // Every integer is a factor of itself.
         }
 
         return factors;
-    }
-
-    private static void add(int i, List<Integer> factors) {
-        factors.add(i);
     }
 
     /**
@@ -125,13 +122,12 @@ public class Structure {
      * @return
      */
     public static int sumOfFactors(int n) {
-        int sum = 0;
-
-        if (n > 0) {
-            sum = allFactors(n).stream().reduce(0, Integer::sum) - n;
+        if (n <= 0) {
+            String msg = String.format("Cannot find factors of a non-positive integer %d.", n);
+            throw new IllegalArgumentException(msg);
         }
 
-        return sum;
+        return allFactors(n).stream().reduce(0, Integer::sum) - n;
     }
 
     /**
@@ -141,13 +137,12 @@ public class Structure {
      * @return
      */
     public static boolean isPerfect(int n) {
-        boolean result = false;
-
-        if (n > 0) {
-            result = sumOfFactors(n) == n;
+        if (n <= 0) {
+            String msg = String.format("Cannot check if a non-positive integer %d is perfect.", n);
+            throw new IllegalArgumentException(msg);
         }
 
-        return result;
+        return sumOfFactors(n) == n;
     }
 
     public static void allTests(String number) {
@@ -193,5 +188,4 @@ public class Structure {
             stop = (choice.compareToIgnoreCase("y") == 0);
         } while (!stop);
     }
-
 }
