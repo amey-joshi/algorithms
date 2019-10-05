@@ -23,11 +23,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 public class Structure {
 
     /**
      * Returns true if a positive integer is a palindrome, false otherwise.
+     *
+     * The size of the string should be less than {@link Integer.MAX_INT}.
      *
      * @param number
      *
@@ -50,13 +53,13 @@ public class Structure {
      * @param number
      * @return
      */
-    public static int sumOfDigits(String number) {
-        if (!Utils.isNonnegativeInt(number)) {
-            String msg = String.format("Could not interpret %s as a non-negative integer.", number);
+    public static long sumOfDigits(String number) {
+        if (!Utils.isNonnegativeLong(number)) {
+            String msg = String.format("Could not interpret %s as a non-negative (long) integer.", number);
             throw new IllegalArgumentException(msg);
         }
 
-        return number.chars().map(c -> c - '0').reduce(0, Integer::sum);
+        return number.chars().map(c -> c - '0').asLongStream().sum();
     }
 
     /**
@@ -65,15 +68,15 @@ public class Structure {
      * @param n
      * @return
      */
-    public static List<Integer> allPrimeFactors(int n) {
+    public static List<Long> allPrimeFactors(long n) {
         if (n <= 0) {
-            String msg = String.format("Cannot find factors of a non-positive integer %d.", n);
+            String msg = String.format("Cannot find factors of a non-positive (long) integer %d.", n);
             throw new IllegalArgumentException(msg);
         }
 
-        List<Integer> factors = new ArrayList<>();
+        List<Long> factors = new ArrayList<>();
 
-        int p = 2;
+        long p = 2;
 
         while (n >= p * p) {
             if (n % p == 0) {
@@ -97,17 +100,18 @@ public class Structure {
      *
      * @return {@link List} of all factors.
      */
-    public static List<Integer> allFactors(int n) {
+    public static List<Long> allFactors(long n) {
         if (n <= 0) {
-            String msg = String.format("Cannot find factors of a non-positive integer %d.", n);
+            String msg = String.format("Cannot find factors of a non-positive (long) integer %d.", n);
             throw new IllegalArgumentException(msg);
         }
 
-        List<Integer> factors = new ArrayList<>();
+        List<Long> factors = new ArrayList<>();
 
-        factors.add(1); // One is a factor of every integer.
-        IntStream.range(2, n / 2 + 1).filter(i -> n % i == 0).forEach(i -> factors.add(i));
+        factors.add(1L); // One is a factor of every integer.
+
         if (n > 1) {
+            LongStream.range(2, n / 2 + 1).filter(i -> n % i == 0).forEach(i -> factors.add(i));
             factors.add(n); // Every integer is a factor of itself.
         }
 
@@ -121,13 +125,13 @@ public class Structure {
      * @param n
      * @return
      */
-    public static int sumOfFactors(int n) {
+    public static long sumOfFactors(long n) {
         if (n <= 0) {
-            String msg = String.format("Cannot find factors of a non-positive integer %d.", n);
+            String msg = String.format("Cannot find factors of a non-positive (long) integer %d.", n);
             throw new IllegalArgumentException(msg);
         }
 
-        return allFactors(n).stream().reduce(0, Integer::sum) - n;
+        return allFactors(n).stream().reduce(0L, Long::sum) - n;
     }
 
     /**
@@ -136,9 +140,9 @@ public class Structure {
      * @param n
      * @return
      */
-    public static boolean isPerfect(int n) {
+    public static boolean isPerfect(long n) {
         if (n <= 0) {
-            String msg = String.format("Cannot check if a non-positive integer %d is perfect.", n);
+            String msg = String.format("Cannot check if a non-positive (long) integer %d is perfect.", n);
             throw new IllegalArgumentException(msg);
         }
 
@@ -154,8 +158,8 @@ public class Structure {
 
         System.out.println("Sum of the digits is " + sumOfDigits(number));
 
-        int n = Integer.parseInt(number);
-        List<Integer> factors = allFactors(n);
+        long n = Long.parseLong(number);
+        List<Long> factors = allFactors(n);
 
         System.out.println("Its factors are: " + Arrays.toString(factors.toArray()));
         System.out.println("Number of divisors: " + (factors.size() - 1));
@@ -178,7 +182,7 @@ public class Structure {
         do {
             String number = console.readLine("Enter a positive integer: ");
 
-            if (Utils.isNonnegativeInt(number)) {
+            if (Utils.isNonnegativeLong(number)) {
                 allTests(number);
             } else {
                 System.out.println("You didn't enter a positive integer");

@@ -18,7 +18,6 @@
  */
 package org.toc.algo.numbers;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Utils {
@@ -26,18 +25,18 @@ public class Utils {
     private static final Logger LOGGER = Logger.getLogger(Utils.class.getName());
 
     /**
-     * Returns true if a string is a non-negative integer, false otherwise.
+     * Returns true if a string is a non-negative long integer, false otherwise.
      *
      * @param number
      * @return
      */
-    public static boolean isNonnegativeInt(String number) {
+    public static boolean isNonnegativeLong(String number) {
         boolean result = true;
 
         try {
-            Integer.parseUnsignedInt(number);
+            Long.parseUnsignedLong(number);
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.FINE, String.format("The string %s could not be interepreted as a non-negative integer", number));
+            LOGGER.fine(e.getMessage());
             result = false;
         }
 
@@ -45,18 +44,18 @@ public class Utils {
     }
 
     /**
-     * Returns true if a string is an integer, false otherwise.
+     * Returns true if a string is a long integer, false otherwise.
      *
      * @param number
      * @return
      */
-    public static boolean isInteger(String number) {
+    public static boolean isLong(String number) {
         boolean result = true;
 
         try {
-            Integer.parseInt(number);
+            Long.parseLong(number);
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.FINE, String.format("The string %s could not be interepreted as an integer", number));
+            LOGGER.fine(e.getMessage());
             result = false;
         }
 
