@@ -38,6 +38,8 @@ public class StructureTest {
      */
     @Test
     public void testIsPalindrome() {
+        assertTrue(Structure.isPalindrome("12321"));
+        assertFalse(Structure.isPalindrome("1234"));
     }
 
     /**
