@@ -149,7 +149,7 @@ public class Structure {
         return sumOfFactors(n) == n;
     }
 
-    public static void allTests(String number) {
+    private static void allTests(String number) {
         if (isPalindrome(number)) {
             System.out.println("\nYou entered a palindrome.");
         } else {
