@@ -1,5 +1,8 @@
 package org.toc.algo.string;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class SubsequenceAnalyzer {
     /**
      * The string from which we form sub-sequences.
@@ -32,7 +35,17 @@ public class SubsequenceAnalyzer {
      * @return
      */
     public int numSubsequences(final String goal) {
-        int nss = 0; // number of sub-sequences
+        return getAllSubsequences(goal).size();
+    }
+
+    /**
+     * Get a list of all subsequences of 'initial' that make up the 'goal'.
+     * 
+     * @param goal
+     * @return
+     */
+    public List<String> getAllSubsequences(final String goal) {
+        List<String> list = new LinkedList<>();
 
         if (isSubset(goal)) {
             int from = 0;
@@ -41,15 +54,15 @@ public class SubsequenceAnalyzer {
                 if (isSubSeqPossible(goal.substring(from, to))) {
                     ++to;
                 } else {
+                    list.add(goal.substring(from, to - 1));
                     from = to - 1;
                     --i;
-                    ++nss;
                 }
             }
-            ++nss;
+            list.add(goal.substring(from));
         }
 
-        return nss;
+        return list;
     }
 
     /**
