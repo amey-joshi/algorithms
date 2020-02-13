@@ -1,12 +1,25 @@
 package org.toc.algo.string;
 
 public class SubsequenceAnalyzer {
+    /**
+     * The string from which we form sub-sequences.
+     */
     private String initial;
 
+    /**
+     * The only constructor.
+     * 
+     * @param initial
+     */
     public SubsequenceAnalyzer(final String initial) {
         this.initial = initial;
     }
 
+    /**
+     * Get the 'initial' string.
+     * 
+     * @return
+     */
     public String inits() {
         return initial;
     }
@@ -19,14 +32,12 @@ public class SubsequenceAnalyzer {
      * @return
      */
     public int numSubsequences(final String goal) {
-        int nss = -1; // number of sub-sequences
+        int nss = 0; // number of sub-sequences
 
         if (isSubset(goal)) {
-            nss = 0;
             int from = 0;
             int to = 1;
             for (int i = to; i <= goal.length(); ++i) {
-
                 if (isSubSeqPossible(goal.substring(from, to))) {
                     ++to;
                 } else {
@@ -51,8 +62,8 @@ public class SubsequenceAnalyzer {
     private boolean isSubset(String goal) {
         boolean possible = true;
 
-        for (char g : goal.toCharArray()) {
-            if (initial.indexOf(g) == -1) {
+        for (char ch : goal.toCharArray()) {
+            if (initial.indexOf(ch) == -1) {
                 possible = false;
                 break;
             }
