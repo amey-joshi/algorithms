@@ -41,31 +41,31 @@ public class IntToWord {
             word = "";
             break;
         case 1:
-            word = "one";
+            word = "One";
             break;
         case 2:
-            word = "two";
+            word = "Two";
             break;
         case 3:
-            word = "three";
+            word = "Three";
             break;
         case 4:
-            word = "four";
+            word = "Four";
             break;
         case 5:
-            word = "five";
+            word = "Five";
             break;
         case 6:
-            word = "six";
+            word = "Six";
             break;
         case 7:
-            word = "seven";
+            word = "Seven";
             break;
         case 8:
-            word = "eight";
+            word = "Eight";
             break;
         case 9:
-            word = "nine";
+            word = "Nine";
             break;
         default:
             word = "";
@@ -81,34 +81,34 @@ public class IntToWord {
         if (m == 1) {
             switch (n) {
             case 0:
-                word = "ten";
+                word = "Ten";
                 break;
             case 1:
-                word = "eleven";
+                word = "Eleven";
                 break;
             case 2:
-                word = "twelve";
+                word = "Twelve";
                 break;
             case 3:
-                word = "thirteen";
+                word = "Thirteen";
                 break;
             case 4:
-                word = "fourteen";
+                word = "Fourteen";
                 break;
             case 5:
-                word = "fifteen";
+                word = "Fifteen";
                 break;
             case 6:
-                word = "sixteen";
+                word = "Sixteen";
                 break;
             case 7:
-                word = "seventeen";
+                word = "Seventeen";
                 break;
             case 8:
-                word = "eighteen";
+                word = "Eighteen";
                 break;
             case 9:
-                word = "nineteen";
+                word = "Nineteen";
                 break;
             default:
                 word = "";
@@ -117,28 +117,28 @@ public class IntToWord {
         } else {
             switch (m) {
             case 2:
-                word = "twenty";
+                word = "Twenty";
                 break;
             case 3:
-                word = "thirty";
+                word = "Thirty";
                 break;
             case 4:
-                word = "fourty";
+                word = "Forty";
                 break;
             case 5:
-                word = "fifty";
+                word = "Fifty";
                 break;
             case 6:
-                word = "sixty";
+                word = "Sixty";
                 break;
             case 7:
-                word = "seventy";
+                word = "Seventy";
                 break;
             case 8:
-                word = "eighty";
+                word = "Eighty";
                 break;
             case 9:
-                word = "ninety";
+                word = "Ninety";
                 break;
             default:
                 word = "";
@@ -175,9 +175,9 @@ public class IntToWord {
         case 3:
             if (digits[0] != 0) {
                 if (digits[1] != 0 || digits[2] != 0) {
-                    word = onesDigit(digits[0]) + " hundred and " + tensDigit(digits[1], digits[2]) + " " + suffix;
+                    word = onesDigit(digits[0]) + " Hundred " + tensDigit(digits[1], digits[2]) + " " + suffix;
                 } else {
-                    word = onesDigit(digits[0]) + " hundred" + " " + suffix;
+                    word = onesDigit(digits[0]) + " Hundred" + " " + suffix;
                 }
             } else { // digits[0] == 0.
                 if (digits[1] != 0 || digits[2] != 0) {
@@ -211,7 +211,7 @@ public class IntToWord {
     }
 
     public String toWords(String number) {
-        final String[] suffix = { "", "thousand", "million", "billion", "trillion" };
+        final String[] suffix = { "", "Thousand", "Million", "Billion", "Trillion" };
         String result = "Not an integer";
 
         if (isLegal(number)) {
@@ -229,7 +229,7 @@ public class IntToWord {
             int i = 0;
 
             if (digits.length == 0) {
-                word = "zero";
+                word = "Zero";
             } else {
                 LinkedList<String> wordList = new LinkedList<>();
                 for (int j = digits.length; j > 0; j -= 3) {
@@ -253,7 +253,7 @@ public class IntToWord {
             result = minus ? "minus " + word.trim() : word.trim();
         }
 
-        return result;
+        return result.trim().replaceAll(" +", " ");
     }
 
     public static void main(String[] args) {
